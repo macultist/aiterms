@@ -34,6 +34,11 @@ for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
 const v = require('crypto').createHash('sha1').update(['data/terms.js', 'app.js', 'style.css'].map(read).join('')).digest('hex').slice(0, 8);
 const bust = h => h.replace(/(data\/terms\.js|app\.js|style\.css)(\?v=\w+)?"/g, `$1?v=${v}"`);
 const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">`;
+// 쿠팡 파트너스 배너(공개 값, petfee, waste 와 같은 위젯). 광고는 본문 아래 한 곳만
+const CP = { tracking: 'AF5048356', widget: '1029096' };
+const tail = b => `<aside class="ads" aria-label="광고"><div class="ad-coupang" data-cp-widget="${CP.widget}" data-cp-tracking="${CP.tracking}"></div><p class="ad-note">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></aside>
+<footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="${b}privacy.html">개인정보처리방침</a></footer>
+<script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="unsafe-url";f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>`;
 const homeDesc = '일상에서 가볍게 쓰는 AI 말부터 회사 실무 용어, 전문 용어까지. 뜻풀이, 관용구, 예문, 표기법을 한 번에 찾는 AI 용어사전.';
 fs.writeFileSync(path.join(dir, 'index.html'), bust(`<!doctype html>
 <html lang="ko">
@@ -50,6 +55,7 @@ ${fav}
 </head>
 <body class="home">
 <div id="app">${homeHtml}</div>
+${tail('')}
 <script src="data/terms.js"></script>
 <script src="app.js"></script>
 </body>
@@ -73,6 +79,7 @@ ${fav}
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 </head><body class="res">
 <div id="app">${renderEntry(t.term).html}</div>
+${tail('../')}
 <script>var AIT_BASE='../',AIT_ENTRY=${JSON.stringify(t.term).replace(/</g, '\\u003c')};</script>
 <script src="../data/terms.js"></script><script src="../app.js"></script>
 </body></html>
@@ -81,10 +88,28 @@ ${fav}
   fs.writeFileSync(path.join(dir, slugs[i], 'index.html'), bust(page));
 });
 
+// 개인정보처리방침: 본문은 docs/privacy.html(사이트에 직접 올라가지 않는 원본)
+fs.writeFileSync(path.join(dir, 'privacy.html'), bust(`<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>개인정보처리방침 : AI 용어사전</title>
+<meta name="description" content="AI 용어사전의 개인정보처리방침입니다.">
+<link rel="canonical" href="${SITE}privacy.html">
+${fav}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+</head><body class="res">
+<div class="top"><header class="gnb"><a class="logo" href="./"><span class="mark">AI</span>용어사전</a></header></div>
+${read('docs/privacy.html')}
+${tail('')}
+</body></html>
+`));
+
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(dir, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>${SITE}</loc><lastmod>${today}</lastmod></url>
+<url><loc>${SITE}privacy.html</loc><lastmod>2026-10-15</lastmod></url>
 ${T.map((t, i) => `<url><loc>${SITE}${slugs[i]}/</loc><lastmod>${t.checked || today}</lastmod></url>`).join('\n')}
 </urlset>
 `);

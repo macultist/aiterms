@@ -40,7 +40,7 @@ has(one, '<link rel="canonical"', '<h1 class="w">', '<meta name="description"');
 const idx = fs.readFileSync(__dirname + '/index.html', 'utf8'); // 첫 화면도 JS 없이 내용, 링크가 보여야 한다
 has(idx, '<link rel="canonical" href="https://macultist.kr/aiterms/"', '<h1>', 'og:title', 'href="./rag/"');
 assert.strictEqual(new Set(idx.match(/href="\.\/[a-z0-9-]+\/"/g)).size, n);
-assert.strictEqual((fs.readFileSync(__dirname + '/sitemap.xml', 'utf8').match(/<loc>/g) || []).length, n + 1);
+assert.strictEqual((fs.readFileSync(__dirname + '/sitemap.xml', 'utf8').match(/<loc>/g) || []).length, n + 2);
 has(page('?tag=' + encodeURIComponent('에이전트')), 'pagehead');
 has(page('?view=notation'), 'AI 바로쓰기');
 for (const t of ['word', 'idiom', 'def', 'ex', 'spell']) page('?q=AI&tab=' + t);

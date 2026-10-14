@@ -65,7 +65,7 @@ const icon = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke
 const logo = `<a class="logo" href="${BASE}"><span class="mark">AI</span>용어사전</a>`;
 const lvBadge = t => `<span class="lv lv-${t.level}">${t.level}</span>`;
 const addBtn = t => { const on = saved().includes(t.term); return `<button class="add" data-add="${esc(t.term)}" aria-pressed="${on}" title="${on ? '단어장에서 빼기' : '단어장에 담기'}" aria-label="${esc(t.term)} ${on ? '단어장에서 빼기' : '단어장에 담기'}">${on ? '✓' : '+'}</button>`; };
-const fld = t => topics(t)[0] ? `<span class="fld">『${esc(topics(t)[0])}』</span> ` : '';
+const fld = t => topics(t)[0] ? `<span class="fld">(${esc(topics(t)[0])})</span> ` : '';
 // 주소 이름: 표제어가 영문이면 표제어(RAG → rag), 아니면 영문 원어(프롬프트 → prompt)
 const slug = t => (/^[\x20-\x7e]+$/.test(t.term) ? t.term : t.en).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const ent = t => `${BASE}${slug(t)}/`;
@@ -100,8 +100,6 @@ const wordbookBox = () => {
     ? `<ul class="wb">${w.slice(0, 6).map(x => `<li><a href="${qs({ entry: x })}">${esc(x)}</a><button class="txtbtn" data-add="${esc(x)}" aria-label="${esc(x)} 단어장에서 빼기">빼기</button></li>`).join('')}</ul>`
     : '<p class="empty-s">표제어 옆 + 를 눌러 단어를 담아 보세요.</p>'}</div>`;
 };
-
-const footer = `<footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.</footer>`;
 
 // ---------- 첫 화면 ----------
 function home() {
@@ -143,7 +141,7 @@ function home() {
     <div class="btns2"><a href="${qs({ view: 'notation' })}">AI 바로쓰기</a><a href="${qs({ q: '할루시네이션' })}">많이 찾는 말</a></div>
     ${wordbookBox()}
     ${tipsBox()}
-  </aside></div>${footer}`;
+  </aside></div>`;
 }
 
 // ---------- 검색 결과 ----------
@@ -162,14 +160,14 @@ function frame(main, withTabs) {
     ${wordbookBox()}
     <div class="btns2"><a href="${qs({ view: 'notation' })}">AI 바로쓰기</a><a href="${qs({ view: 'all' })}">전체 용어</a></div>
     ${tipsBox()}
-  </aside></div>${footer}`;
+  </aside></div>`;
 }
 
 function wordItem(t, full, hlText) {
   const defs = full ? t.defs : t.defs.slice(0, 1);
   const show = s => hlText ? hl(s) : esc(s);
   return `<li class="item"><div class="hw"><a class="w" href="${ent(t)}">${esc(t.term)}</a><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
-    <ol class="means${defs.length > 1 ? ' multi' : ''}">${defs.map(d => `<li><span class="pos">「${t.pos}」</span> ${fld(t)}${show(d.text)}<span class="src">${esc(d.src)}</span></li>`).join('')}</ol>
+    <ol class="means${defs.length > 1 ? ' multi' : ''}">${defs.map(d => `<li><span class="pos">[${t.pos}]</span> ${fld(t)}${show(d.text)}<span class="src">${esc(d.src)}</span></li>`).join('')}</ol>
     ${!full && t.defs.length > 1 ? `<a class="morelink" href="${ent(t)}">쉬운/실무/전문 뜻풀이 ${t.defs.length}개 모두 보기 ›</a>` : ''}</li>`;
 }
 const idiomItem = ({ p, d, t }) => `<li class="item"><a class="idm" href="${ent(t)}">${hl(p)}</a><div class="mean">${esc(d)}</div><span class="src"><a href="${ent(t)}">${esc(t.term)}</a> 관련 표현</span></li>`;
@@ -244,7 +242,7 @@ function entryPage(t) {
   <section class="sec ent">
     <div class="ent-h"><div class="hw"><h1 class="w">${esc(t.term)}</h1><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
       ${t.alias?.length ? `<p class="alias">다른 이름: ${t.alias.map(esc).join(', ')}</p>` : ''}</div>
-    <h4>뜻풀이</h4>${groups.map(g => `<p class="dsrc">${esc(g.src)}</p><ol class="means${g.items.length > 1 ? ' multi' : ''}">${g.items.map(x => `<li><span class="pos">「${t.pos}」</span> ${fld(t)}${esc(x)}</li>`).join('')}</ol>`).join('')}
+    <h4>뜻풀이</h4>${groups.map(g => `<p class="dsrc">${esc(g.src)}</p><ol class="means${g.items.length > 1 ? ' multi' : ''}">${g.items.map(x => `<li><span class="pos">[${t.pos}]</span> ${fld(t)}${esc(x)}</li>`).join('')}</ol>`).join('')}
     ${t.idioms?.length ? `<h4>관용구/함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> — ${esc(i.d)}</li>`).join('')}</ul>` : ''}
     ${t.like ? `<h4>쉬운 비유</h4><p class="like">${esc(t.like)}</p>` : ''}
     <h4>예문</h4><ul class="exl">${t.ex.map(e => `<li>${hl(e, makeRx(t.term, 'gi'))}</li>`).join('')}</ul>
