@@ -101,7 +101,7 @@ const wordbookBox = () => {
     : '<p class="empty-s">표제어 옆 + 를 눌러 단어를 담아 보세요.</p>'}</div>`;
 };
 
-const footer = `<footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br>모든 화면 글꼴: Pretendard</footer>`;
+const footer = `<footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.</footer>`;
 
 // ---------- 첫 화면 ----------
 function home() {
