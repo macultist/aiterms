@@ -34,7 +34,7 @@ for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
 const v = require('crypto').createHash('sha1').update(['data/terms.js', 'app.js', 'style.css'].map(read).join('')).digest('hex').slice(0, 8);
 const bust = h => h.replace(/(data\/terms\.js|app\.js|style\.css)(\?v=\w+)?"/g, `$1?v=${v}"`);
 const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">`;
-const homeDesc = '일상에서 가볍게 쓰는 AI 말부터 회사 실무 용어, 전문 용어까지. 뜻풀이·관용구·예문·표기법을 한 번에 찾는 AI 용어사전.';
+const homeDesc = '일상에서 가볍게 쓰는 AI 말부터 회사 실무 용어, 전문 용어까지. 뜻풀이, 관용구, 예문, 표기법을 한 번에 찾는 AI 용어사전.';
 fs.writeFileSync(path.join(dir, 'index.html'), bust(`<!doctype html>
 <html lang="ko">
 <head>

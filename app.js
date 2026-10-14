@@ -4,7 +4,7 @@ const T = window.TERMS;
 const LV = ['일상', '실무', '전문'];
 const LVNAME = { 일상: '일상 용어', 실무: '실무 용어', 전문: '전문 용어' };
 const HIDE = new Set([...LV, '기초']); // 난이도와 겹치는 태그는 주제로 안 보임
-const TABS = [['all', '전체'], ['word', '단어'], ['idiom', '관용구'], ['def', '뜻풀이'], ['ex', '예문'], ['spell', '맞춤법·표기법']];
+const TABS = [['all', '전체'], ['word', '단어'], ['idiom', '관용구'], ['def', '뜻풀이'], ['ex', '예문'], ['spell', '맞춤법/표기법']];
 const PALETTE = [['#e8f8ef', '#00a347'], ['#eef3ff', '#2f6be0'], ['#fff3e6', '#e07000'], ['#f5eeff', '#8a44d8'], ['#ffeef0', '#e0444b'], ['#e7f7fa', '#0a93ad']];
 
 const P = new URLSearchParams(location.search);
@@ -36,7 +36,7 @@ const hl = (s, rx = makeRx(q, 'gi')) => {
   return out + esc(s.slice(i));
 };
 const has = s => !!rxt && rxt.test(s);
-// 표제어·영문·다른 표기와 맞는 정도: 3 같음, 2 앞부분, 1 포함, 0 없음
+// 표제어, 영문, 다른 표기와 맞는 정도: 3 같음, 2 앞부분, 1 포함, 0 없음
 function score(t, n = norm(q)) {
   if (!n) return 0;
   let best = 0;
@@ -101,7 +101,7 @@ const wordbookBox = () => {
     : '<p class="empty-s">표제어 옆 + 를 눌러 단어를 담아 보세요.</p>'}</div>`;
 };
 
-const footer = `<footer>AI 용어사전 · 뜻풀이는 학습용 참고 자료이며 서비스·법령 정보는 바뀔 수 있습니다.<br>모든 화면 글꼴: Pretendard</footer>`;
+const footer = `<footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br>모든 화면 글꼴: Pretendard</footer>`;
 
 // ---------- 첫 화면 ----------
 function home() {
@@ -123,7 +123,7 @@ function home() {
   return `<header class="gnb">${logo}<nav><a href="${qs({ view: 'all' })}">전체 용어</a><a href="${qs({ view: 'notation' })}">AI 바로쓰기</a><a href="${qs({ view: 'wordbook' })}">내 단어장</a></nav></header>
   <section class="hero">
     <h1><em>AI</em> 용어사전</h1>
-    <p class="sub">일상 말부터 실무·전문 용어까지 AI 용어 ${T.length}개</p>
+    <p class="sub">일상 말부터 실무, 전문 용어까지 AI 용어 ${T.length}개</p>
     ${searchForm(true)}
     ${r.length ? `<div class="recent"><span class="lbl">최근 검색어</span>${recentChips(5)}<span data-morechips hidden>${r.slice(5).map(w => `<span class="chip"><a href="${qs({ q: w })}">${esc(w)}</a><button data-del="${esc(w)}" aria-label="${esc(w)} 지우기">×</button></span>`).join('')}</span><span class="ctl">${r.length > 5 ? '<button class="txtbtn" data-more>더보기</button>|' : ''}<button class="txtbtn" data-delall>모두삭제</button></span></div>` : ''}
   </section>
@@ -170,7 +170,7 @@ function wordItem(t, full, hlText) {
   const show = s => hlText ? hl(s) : esc(s);
   return `<li class="item"><div class="hw"><a class="w" href="${ent(t)}">${esc(t.term)}</a><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
     <ol class="means${defs.length > 1 ? ' multi' : ''}">${defs.map(d => `<li><span class="pos">「${t.pos}」</span> ${fld(t)}${show(d.text)}<span class="src">${esc(d.src)}</span></li>`).join('')}</ol>
-    ${!full && t.defs.length > 1 ? `<a class="morelink" href="${ent(t)}">쉬운·실무·전문 뜻풀이 ${t.defs.length}개 모두 보기 ›</a>` : ''}</li>`;
+    ${!full && t.defs.length > 1 ? `<a class="morelink" href="${ent(t)}">쉬운/실무/전문 뜻풀이 ${t.defs.length}개 모두 보기 ›</a>` : ''}</li>`;
 }
 const idiomItem = ({ p, d, t }) => `<li class="item"><a class="idm" href="${ent(t)}">${hl(p)}</a><div class="mean">${esc(d)}</div><span class="src"><a href="${ent(t)}">${esc(t.term)}</a> 관련 표현</span></li>`;
 const defItem = ({ t, d }) => `<li class="item"><div class="hw"><a class="w" href="${ent(t)}">${esc(t.term)}</a><span class="orig">${esc(t.en)}</span>${lvBadge(t)}</div><div class="mean">${hl(d.text)}</div><span class="src">${esc(d.src)}</span></li>`;
@@ -200,7 +200,7 @@ function results() {
     idiom: ['관용구', idioms, idiomItem, 3],
     def: ['뜻풀이', defs, defItem, 3],
     ex: ['예문', exs, exItem, 3],
-    spell: ['맞춤법·표기법', spells, spellItem, 2],
+    spell: ['맞춤법/표기법', spells, spellItem, 2],
   };
   const section = (k, limit) => {
     const [title, arr, fn] = S[k];
@@ -219,14 +219,14 @@ function results() {
   return frame(filter + fixbar + (body || none), true);
 }
 
-// ---------- 목록 화면(주제·난이도·전체·표기법·단어장) ----------
+// ---------- 목록 화면(주제, 난이도, 전체, 표기법, 단어장) ----------
 function browse() {
   let title, desc, list, item = t => wordItem(t, false, false);
   if (view === 'wordbook') { list = saved().map(byName).filter(Boolean); title = '내 단어장'; desc = '이 브라우저에만 저장됩니다. 다른 기기와 공유되지 않습니다.'; }
   else if (view === 'notation') { list = T.filter(t => t.note.no.length || t.note.tip); title = 'AI 바로쓰기'; desc = '헷갈리기 쉬운 AI 용어의 바른 표기와 주의할 표기를 모았습니다.'; item = spellItem; }
   else if (tag) { list = T.filter(t => t.tags.includes(tag)); title = '#' + tag; desc = `'${tag}' 주제의 AI 용어`; }
-  else if (lv) { list = T.filter(t => t.level === lv); title = LVNAME[lv]; desc = { 일상: '뉴스·대화에서 가볍게 쓰는 AI 말', 실무: '회사·기업 현장에서 쓰는 AI 용어', 전문: '연구·개발에서 쓰는 AI 전문 용어' }[lv]; }
-  else { list = T; title = '전체 용어'; desc = '가나다·ABC 순'; }
+  else if (lv) { list = T.filter(t => t.level === lv); title = LVNAME[lv]; desc = { 일상: '뉴스, 대화에서 가볍게 쓰는 AI 말', 실무: '회사, 기업 현장에서 쓰는 AI 용어', 전문: '연구, 개발에서 쓰는 AI 전문 용어' }[lv]; }
+  else { list = T; title = '전체 용어'; desc = '가나다/ABC 순'; }
   if (!view && !tag && !lv) list = [...T];
   if (view !== 'wordbook') list = [...list].sort((a, b) => a.term.localeCompare(b.term, 'ko'));
   const head = `<div class="pagehead"><h2>${esc(title)}<em>${list.length}</em></h2><p>${esc(desc)}</p></div>`;
@@ -240,18 +240,18 @@ function entryPage(t) {
   const groups = [];
   t.defs.forEach(d => { const g = groups.find(x => x.src === d.src); g ? g.items.push(d.text) : groups.push({ src: d.src, items: [d.text] }); });
   const rel = (t.rel || []).map(r => { const x = byName(r); return `<a href="${x ? ent(x) : qs({ q: r })}">${esc(r)}</a>`; }).join('');
-  const main = `<p class="crumb"><a href="${BASE}">AI 용어사전</a> › ${topics(t).map(x => `<a href="${qs({ tag: x })}">${esc(x)}</a>`).join(' · ')}</p>
+  const main = `<p class="crumb"><a href="${BASE}">AI 용어사전</a> › ${topics(t).map(x => `<a href="${qs({ tag: x })}">${esc(x)}</a>`).join(', ')}</p>
   <section class="sec ent">
     <div class="ent-h"><div class="hw"><h1 class="w">${esc(t.term)}</h1><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
-      ${t.alias?.length ? `<p class="alias">다른 이름 · ${t.alias.map(esc).join(', ')}</p>` : ''}</div>
+      ${t.alias?.length ? `<p class="alias">다른 이름: ${t.alias.map(esc).join(', ')}</p>` : ''}</div>
     <h4>뜻풀이</h4>${groups.map(g => `<p class="dsrc">${esc(g.src)}</p><ol class="means${g.items.length > 1 ? ' multi' : ''}">${g.items.map(x => `<li><span class="pos">「${t.pos}」</span> ${fld(t)}${esc(x)}</li>`).join('')}</ol>`).join('')}
-    ${t.idioms?.length ? `<h4>관용구·함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> — ${esc(i.d)}</li>`).join('')}</ul>` : ''}
+    ${t.idioms?.length ? `<h4>관용구/함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> — ${esc(i.d)}</li>`).join('')}</ul>` : ''}
     ${t.like ? `<h4>쉬운 비유</h4><p class="like">${esc(t.like)}</p>` : ''}
     <h4>예문</h4><ul class="exl">${t.ex.map(e => `<li>${hl(e, makeRx(t.term, 'gi'))}</li>`).join('')}</ul>
     ${t.vs?.length ? `<h4>헷갈리는 용어 비교</h4><dl class="sp vs">${t.vs.map(v => { const x = byName(v.w); return `<dt>${x ? `<a href="${ent(x)}">${esc(v.w)}</a>` : esc(v.w)}</dt><dd>${esc(v.d)}</dd>`; }).join('')}</dl>` : ''}
-    <h4>맞춤법·표기법</h4>${spellDl(t)}
+    <h4>맞춤법/표기법</h4>${spellDl(t)}
     ${rel ? `<h4>관련어</h4><div class="rel">${rel}</div>` : ''}
-    ${t.checked ? `<p class="checked">마지막 확인 ${esc(t.checked)} · 뜻풀이는 학습용 참고 자료입니다.</p>` : ''}
+    ${t.checked ? `<p class="checked">마지막 확인 ${esc(t.checked)}<br>뜻풀이는 학습용 참고 자료입니다.</p>` : ''}
   </section>`;
   return frame(main, false);
 }
