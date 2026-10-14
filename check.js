@@ -34,6 +34,8 @@ has(page('', { AIT_BASE: '../', AIT_ENTRY: '챗GPT' }), '<h1 class="w">', '뜻�
 require('child_process').execFileSync('node', [__dirname + '/build.js']);
 const n = (fs.readFileSync(__dirname + '/data/terms.js', 'utf8').match(/\bterm:/g) || []).length || (fs.readFileSync(__dirname + '/data/terms.js', 'utf8').match(/"term":/g) || []).length;
 const pages = fs.readdirSync(__dirname).filter(d => fs.existsSync(`${__dirname}/${d}/index.html`));
+for (const f of ['index.html', 'privacy.html', ...pages.map(d => d + '/index.html')])   // GA 태그는 페이지마다 정확히 1번
+  assert.strictEqual(fs.readFileSync(__dirname + '/' + f, 'utf8').split('gtag/js?id=G-8V2J5BZTHD').length - 1, 1, 'GA 태그 ' + f);
 assert.strictEqual(pages.length, n, 'pages ' + pages.length + ' != terms ' + n);
 const one = fs.readFileSync(__dirname + '/rag/index.html', 'utf8');
 has(one, '<link rel="canonical"', '<h1 class="w">', '<meta name="description"');

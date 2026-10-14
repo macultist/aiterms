@@ -35,6 +35,10 @@ const v = require('crypto').createHash('sha1').update(['data/terms.js', 'app.js'
 const bust = h => h.replace(/(data\/terms\.js|app\.js|style\.css)(\?v=\w+)?"/g, `$1?v=${v}"`);
 const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">`;
 // 쿠팡 파트너스 배너(공개 값, petfee, waste 와 같은 위젯). 광고는 본문 아래 한 곳만
+// 구글 애널리틱스(공개 측정 ID), 모든 페이지 <head> 바로 다음에 한 번
+const GA = 'G-8V2J5BZTHD';
+const gtag = `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA}',{anonymize_ip:true});</script>`;
 const CP = { tracking: 'AF5048356', widget: '1029096' };
 const tail = b => `<aside class="ads" aria-label="광고"><div class="ad-coupang" data-cp-widget="${CP.widget}" data-cp-tracking="${CP.tracking}"></div><p class="ad-note">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></aside>
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="${b}privacy.html">개인정보처리방침</a></footer>
@@ -43,6 +47,7 @@ const homeDesc = '일상에서 가볍게 쓰는 AI 말부터 회사 실무 용�
 fs.writeFileSync(path.join(dir, 'index.html'), bust(`<!doctype html>
 <html lang="ko">
 <head>
+${gtag}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI 용어사전</title>
@@ -68,6 +73,7 @@ T.forEach((t, i) => {
   const ld = { '@context': 'https://schema.org', '@type': 'DefinedTerm', name: t.term, alternateName: [t.en, ...(t.alias || [])], description: t.defs[0].text, url, inDefinedTermSet: SITE };
   const page = `<!doctype html>
 <html lang="ko"><head>
+${gtag}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -91,6 +97,7 @@ ${tail('../')}
 // 개인정보처리방침: 본문은 docs/privacy.html(사이트에 직접 올라가지 않는 원본)
 fs.writeFileSync(path.join(dir, 'privacy.html'), bust(`<!doctype html>
 <html lang="ko"><head>
+${gtag}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>개인정보처리방침 : AI 용어사전</title>
 <meta name="description" content="AI 용어사전의 개인정보처리방침입니다.">
