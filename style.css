@@ -216,10 +216,9 @@ footer{border-top:1px solid var(--line);background:#fff;color:var(--t3);font-siz
   .sp{grid-template-columns:6em 1fr}
   .fsz{display:none}
 }
-/* 표제어: 비유, 비교, 확인일 */
+/* 표제어: 비유, 비교 */
 .like{margin:6px 0 0;padding:12px 14px;background:var(--soft);border-radius:8px;line-height:1.7}
 .vs dt a{color:var(--blue)}
-.checked{margin:22px 0 0;color:var(--t3);font-size:.85em}
 /* 광고: 본문 아래 한 곳 */
 .ads{max-width:1100px;margin:0 auto;padding:8px 16px 20px;text-align:center}
 .ad-coupang{display:flex;justify-content:center;min-height:140px}.ad-coupang iframe{max-width:100%;border:0;display:block}

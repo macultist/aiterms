@@ -249,7 +249,6 @@ function entryPage(t) {
     ${t.vs?.length ? `<h4>헷갈리는 용어 비교</h4><dl class="sp vs">${t.vs.map(v => { const x = byName(v.w); return `<dt>${x ? `<a href="${ent(x)}">${esc(v.w)}</a>` : esc(v.w)}</dt><dd>${esc(v.d)}</dd>`; }).join('')}</dl>` : ''}
     <h4>맞춤법/표기법</h4>${spellDl(t)}
     ${rel ? `<h4>관련어</h4><div class="rel">${rel}</div>` : ''}
-    ${t.checked ? `<p class="checked">마지막 확인 ${esc(t.checked)}<br>뜻풀이는 학습용 참고 자료입니다.</p>` : ''}
   </section>`;
   return frame(main, false);
 }
