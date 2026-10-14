@@ -228,3 +228,8 @@ footer a{color:var(--t3)}
 .doc{max-width:760px;margin:0 auto;padding:28px 16px 48px;line-height:1.8;font-size:15px}
 .doc h1{font-size:24px;margin:0 0 16px}.doc h2{font-size:17px;margin:28px 0 8px}
 .doc ul{padding-left:1.2em}.doc a{color:var(--blue);word-break:break-all}.doc .meta{margin-top:28px;color:var(--t3)}
+/* 난이도별 전체 용어: 많이 쓰는 20개만 먼저, 나머지는 펼치기 */
+.idx-h small{margin-left:6px;color:var(--t3);font-size:12px;font-weight:400}
+.more summary{display:inline-block;margin:10px 0 4px;padding:5px 14px;border:1px solid var(--line);border-radius:16px;color:var(--t2);font-size:13px;cursor:pointer;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:" ▾"}.more[open] summary{font-size:0}.more[open] summary::after{content:"접기 ▴";font-size:13px}

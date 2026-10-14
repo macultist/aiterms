@@ -129,7 +129,8 @@ function home() {
     <section class="blk"><div class="blk-h"><h2>AI 바로쓰기<small>헷갈리는 AI 용어 표기</small></h2><a href="${qs({ view: 'notation' })}">더보기 ›</a></div><div class="cards">${cardsFix}</div></section>
     <section class="blk"><div class="blk-h"><h2>오늘의 AI 용어<small>날마다 바뀝니다</small></h2><a href="${qs({ view: 'all' })}">전체 용어 ›</a></div><div class="cards">${today}</div></section>
     <section class="blk"><div class="blk-h"><h2>주제별 찾기</h2></div><div class="pills">${pills}</div></section>
-    <section class="blk"><div class="blk-h"><h2>난이도별 전체 용어<small>${T.length}개</small></h2></div>${LV.map(l => `<h3 class="idx-h">${lvBadge({ level: l })} ${LVNAME[l]}</h3><ul class="idx">${T.filter(t => t.level === l).map(t => `<li><a href="${ent(t)}">${esc(t.term)}</a></li>`).join('')}</ul>`).join('')}</section>
+    <section class="blk"><div class="blk-h"><h2>난이도별 전체 용어<small>${T.length}개</small></h2></div>${LV.map(l => { const li = t => `<li><a href="${ent(t)}">${esc(t.term)}</a></li>`, ts = T.filter(t => t.level === l);   // terms.js 가 난이도마다 많이 쓰는 순서
+      return `<h3 class="idx-h">${lvBadge({ level: l })} ${LVNAME[l]}<small>${ts.length}개</small></h3><ul class="idx">${ts.slice(0, 20).map(li).join('')}</ul><details class="more"><summary>펼치기</summary><ul class="idx">${ts.slice(20).map(li).join('')}</ul></details>`; }).join('')}</section>
   </main>
   <aside>
     <div class="links3"><a href="${qs({ view: 'wordbook' })}">내 단어장</a><a href="${qs({ view: 'all' })}">전체 용어</a><a href="${qs({ view: 'notation' })}">표기법</a></div>
