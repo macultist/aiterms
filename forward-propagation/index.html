@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>순전파(forward propagation) 뜻 : AI 용어사전</title>
+<meta name="description" content="입력 데이터가 신경망의 첫 층부터 마지막 층까지 차례로 계산되며 예측값이 나오는 과정. 모델이 답을 내는 방향의 계산이다. 시험지를 받아 1번부터 끝까지 풀어 답안을 내는 과정이다. 채점하고 틀린 원인을 거꾸로 따지는 일(역전파)은 그다음이다.">
+<link rel="canonical" href="https://macultist.kr/aiterms/forward-propagation/">
+<meta property="og:type" content="article"><meta property="og:title" content="순전파(forward propagation) 뜻 : AI 용어사전"><meta property="og:description" content="입력 데이터가 신경망의 첫 층부터 마지막 층까지 차례로 계산되며 예측값이 나오는 과정. 모델이 답을 내는 방향의 계산이다. 시험지를 받아 1번부터 끝까지 풀어 답안을 내는 과정이다. 채점하고 틀린 원인을 거꾸로 따지는 일(역전파)은 그다음이다."><meta property="og:url" content="https://macultist.kr/aiterms/forward-propagation/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="../style.css?v=82907e4e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"순전파","alternateName":["forward propagation","순방향 전파","포워드 패스","forward pass","포워드 프로퍼게이션"],"description":"입력 데이터가 신경망의 첫 층부터 마지막 층까지 차례로 계산되며 예측값이 나오는 과정. 모델이 답을 내는 방향의 계산이다.","url":"https://macultist.kr/aiterms/forward-propagation/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
+</head><body class="res">
+<div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
+    <div class="srow"><div class="sbox">
+      <input name="q" value="" placeholder="AI 용어를 입력해 주세요" aria-label="AI 용어 검색" maxlength="50" autocapitalize="off" spellcheck="false">
+      <button type="button" class="clr" data-clr aria-label="검색어 지우기" hidden>×</button>
+      <button class="go" aria-label="검색"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+      <ul class="ac" role="listbox" hidden></ul>
+    </div></div></form></header></div>
+  <nav class="tabs" aria-label="검색 결과 구분"><div class="tabs-in"><ul></ul>
+    <div class="fsz" role="group" aria-label="글자 크기"><button data-fs="0" aria-pressed="false" aria-label="글자 작게">T</button><button data-fs="1" aria-pressed="true" aria-label="글자 보통">T</button><button data-fs="2" aria-pressed="false" aria-label="글자 크게">T</button></div></div></nav>
+  <div class="wrap"><main><p class="crumb"><a href="../">AI 용어사전</a> › <a href="../?tag=%ED%95%99%EC%8A%B5">학습</a>, <a href="../?tag=%EB%AA%A8%EB%8D%B8">모델</a></p>
+  <section class="sec ent">
+    <div class="ent-h"><div class="hw"><h1 class="w">순전파</h1><span class="orig">forward propagation</span><span class="lv lv-전문">전문</span><button class="add" data-add="순전파" aria-pressed="false" title="단어장에 담기" aria-label="순전파 단어장에 담기">+</button></div>
+      <p class="alias">다른 이름: 순방향 전파, 포워드 패스, forward pass, 포워드 프로퍼게이션</p></div>
+    <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『학습』</span> 입력 데이터가 신경망의 첫 층부터 마지막 층까지 차례로 계산되며 예측값이 나오는 과정. 모델이 답을 내는 방향의 계산이다.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『학습』</span> 추론은 순전파만 하면 되고, 학습은 순전파로 손실을 구한 뒤 역전파를 이어서 한다. 그래서 추론이 학습보다 메모리와 시간이 훨씬 적게 들며, 서빙 비용을 따질 때 순전파 한 번에 드는 연산량을 기준으로 삼는다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『학습』</span> 각 층 l에서 a^(l) = f(W^(l) a^(l−1) + b^(l))을 입력층부터 출력층까지 차례로 계산하는 과정. 학습 때는 역전파에 필요한 중간 활성화 값을 저장해 두므로 메모리가 많이 들며, 이를 줄이려고 일부만 저장하고 다시 계산하는 그래디언트 체크포인팅을 쓰기도 한다.</li></ol>
+    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>포워드 패스</b> — 순전파 한 번. 입력 하나나 배치 하나를 끝까지 계산하는 일.</li><li><b>그래디언트 체크포인팅</b> — 순전파 중간값을 일부만 저장하고 역전파 때 다시 계산해 메모리를 아끼는 기법.</li></ul>
+    <h4>쉬운 비유</h4><p class="like">시험지를 받아 1번부터 끝까지 풀어 답안을 내는 과정이다. 채점하고 틀린 원인을 거꾸로 따지는 일(역전파)은 그다음이다.</p>
+    <h4>예문</h4><ul class="exl"><li>배치 하나를 <strong class="hl">순전파</strong>하는 데 0.2초, 역전파까지 하면 0.6초쯤 걸렸다.</li><li>디버깅할 때는 <strong class="hl">순전파</strong> 중간중간 텐서 모양을 찍어 보면 차원이 어디서 어긋났는지 금방 보인다.</li></ul>
+    <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt><a href="../backpropagation/">역전파</a></dt><dd>순전파는 입력에서 출력 쪽으로 계산해 예측과 손실을 구한다. 역전파는 그 손실에서 출발해 출력에서 입력 쪽으로 거슬러 가며 각 가중치의 기울기를 구한다.</dd></dl>
+    <h4>맞춤법/표기법</h4><dl class="sp"><dt>바른 표기</dt><dd class="ok">순전파</dd>
+  <dt>주의할 표기</dt><dd class="nos"><span>순전파법</span><span>순 전파</span></dd>
+  <dt>원어</dt><dd>forward propagation (forward pass)</dd><dt>다른 이름</dt><dd>순방향 전파, 포워드 패스, forward pass, 포워드 프로퍼게이션</dd><dt>참고</dt><dd>&#39;역전파&#39;의 짝말이다. 코드나 실무 대화에서는 &#39;포워드&#39;라고 줄여 부르는 일이 많다.</dd></dl>
+    <h4>관련어</h4><div class="rel"><a href="../backpropagation/">역전파</a><a href="../inference/">추론</a><a href="../activation-function/">활성화 함수</a><a href="../neural-network/">신경망</a></div>
+    <p class="checked">마지막 확인 2026-10-14<br>뜻풀이는 학습용 참고 자료입니다.</p>
+  </section></main>
+  <aside>
+    <div class="box"><h3>내가 찾은 단어 <label class="sw"><input type="checkbox" data-autosave checked>자동저장</label></h3>
+      <p class="empty-s">최근 검색어가 없습니다.</p></div>
+    <div class="box"><h3>내 단어장 <a href="../?view=wordbook">전체 0 ›</a></h3><p class="empty-s">표제어 옆 + 를 눌러 단어를 담아 보세요.</p></div>
+    <div class="btns2"><a href="../?view=notation">AI 바로쓰기</a><a href="../?view=all">전체 용어</a></div>
+    <div class="box tips"><h3>사전 사용팁<span class="tipnav"><span data-tipno>1 / 5</span><button data-tip="-1" aria-label="이전 팁">‹</button><button data-tip="1" aria-label="다음 팁">›</button></span></h3><p data-tiptext aria-live="polite">띄어쓰기는 신경 쓰지 않아도 됩니다. "생성형ai"로 찾아도 "생성형 AI"가 나옵니다.</p></div>
+  </aside></div><footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.</footer></div>
+<script>var AIT_BASE='../',AIT_ENTRY="순전파";</script>
+<script src="../data/terms.js?v=82907e4e"></script><script src="../app.js?v=82907e4e"></script>
+</body></html>

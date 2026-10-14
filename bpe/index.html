@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BPE(byte pair encoding) 뜻 : AI 용어사전</title>
+<meta name="description" content="글에서 자주 붙어 나오는 글자 쌍을 하나로 합치는 일을 되풀이해 토큰 목록을 만드는 방법. 많은 LLM이 이 방식으로 단어를 쪼갠다. 자주 쓰는 말을 줄임말로 만드는 것과 비슷하다. &#39;그런데&#39;를 매번 쓰다 보면 하나의 덩어리처럼 다루게 되듯, 자주 붙어 나오는 글자들을 한 칸으">
+<link rel="canonical" href="https://macultist.kr/aiterms/bpe/">
+<meta property="og:type" content="article"><meta property="og:title" content="BPE(byte pair encoding) 뜻 : AI 용어사전"><meta property="og:description" content="글에서 자주 붙어 나오는 글자 쌍을 하나로 합치는 일을 되풀이해 토큰 목록을 만드는 방법. 많은 LLM이 이 방식으로 단어를 쪼갠다. 자주 쓰는 말을 줄임말로 만드는 것과 비슷하다. &#39;그런데&#39;를 매번 쓰다 보면 하나의 덩어리처럼 다루게 되듯, 자주 붙어 나오는 글자들을 한 칸으"><meta property="og:url" content="https://macultist.kr/aiterms/bpe/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="../style.css?v=82907e4e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"BPE","alternateName":["byte pair encoding","바이트 페어 인코딩","바이트 쌍 인코딩","byte-level BPE"],"description":"글에서 자주 붙어 나오는 글자 쌍을 하나로 합치는 일을 되풀이해 토큰 목록을 만드는 방법. 많은 LLM이 이 방식으로 단어를 쪼갠다.","url":"https://macultist.kr/aiterms/bpe/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
+</head><body class="res">
+<div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
+    <div class="srow"><div class="sbox">
+      <input name="q" value="" placeholder="AI 용어를 입력해 주세요" aria-label="AI 용어 검색" maxlength="50" autocapitalize="off" spellcheck="false">
+      <button type="button" class="clr" data-clr aria-label="검색어 지우기" hidden>×</button>
+      <button class="go" aria-label="검색"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+      <ul class="ac" role="listbox" hidden></ul>
+    </div></div></form></header></div>
+  <nav class="tabs" aria-label="검색 결과 구분"><div class="tabs-in"><ul></ul>
+    <div class="fsz" role="group" aria-label="글자 크기"><button data-fs="0" aria-pressed="false" aria-label="글자 작게">T</button><button data-fs="1" aria-pressed="true" aria-label="글자 보통">T</button><button data-fs="2" aria-pressed="false" aria-label="글자 크게">T</button></div></div></nav>
+  <div class="wrap"><main><p class="crumb"><a href="../">AI 용어사전</a> › <a href="../?tag=%EC%96%B8%EC%96%B4">언어</a>, <a href="../?tag=%EB%AA%A8%EB%8D%B8">모델</a></p>
+  <section class="sec ent">
+    <div class="ent-h"><div class="hw"><h1 class="w">BPE</h1><span class="orig">byte pair encoding</span><span class="lv lv-전문">전문</span><button class="add" data-add="BPE" aria-pressed="false" title="단어장에 담기" aria-label="BPE 단어장에 담기">+</button></div>
+      <p class="alias">다른 이름: 바이트 페어 인코딩, 바이트 쌍 인코딩, byte-level BPE</p></div>
+    <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『언어』</span> 글에서 자주 붙어 나오는 글자 쌍을 하나로 합치는 일을 되풀이해 토큰 목록을 만드는 방법. 많은 LLM이 이 방식으로 단어를 쪼갠다.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『언어』</span> 학습 말뭉치에 많이 나온 언어일수록 큰 덩어리로 합쳐지기 때문에, 말뭉치 비중이 적은 언어는 토큰이 잘게 쪼개져 비용과 길이 면에서 불리해진다. 새 토크나이저를 학습시킬 때는 한국어 데이터 비중을 따로 챙기는 이유다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『언어』</span> 본래 데이터 압축 기법으로, 문자(또는 바이트) 단위에서 시작해 가장 빈도 높은 인접 쌍을 새 기호로 병합하는 과정을 목표 어휘 크기에 이를 때까지 반복한다. Sennrich 등이 신경망 번역의 미등록어 문제를 풀려고 도입했고, 바이트 단위 BPE는 어떤 문자열도 미등록어 없이 표현할 수 있다.</li></ol>
+    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>BPE 병합 규칙</b> — 어떤 글자 쌍을 어떤 순서로 합칠지 적어 둔 목록.</li></ul>
+    <h4>쉬운 비유</h4><p class="like">자주 쓰는 말을 줄임말로 만드는 것과 비슷하다. &#39;그런데&#39;를 매번 쓰다 보면 하나의 덩어리처럼 다루게 되듯, 자주 붙어 나오는 글자들을 한 칸으로 묶는다.</p>
+    <h4>예문</h4><ul class="exl"><li><strong class="hl">BPE</strong> 토크나이저는 처음 보는 신조어도 작은 조각으로 쪼개서 어떻게든 처리한다.</li><li>한국어 데이터를 더 넣어 <strong class="hl">BPE</strong>를 다시 학습시키니 같은 문장의 토큰 수가 줄었다.</li></ul>
+    <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt>WordPiece</dt><dd>둘 다 서브워드를 합쳐 가는 방식이지만, BPE는 가장 자주 나오는 쌍을 합치고 WordPiece는 합쳤을 때 말뭉치 우도가 가장 크게 오르는 쌍을 고른다. BERT 계열은 WordPiece, GPT 계열은 주로 BPE를 쓴다.</dd></dl>
+    <h4>맞춤법/표기법</h4><dl class="sp"><dt>바른 표기</dt><dd class="ok">BPE</dd>
+  <dt>주의할 표기</dt><dd class="nos"><span>BEP</span><span>비피이</span></dd>
+  <dt>원어</dt><dd>BPE (Byte Pair Encoding)</dd><dt>다른 이름</dt><dd>바이트 페어 인코딩, 바이트 쌍 인코딩, byte-level BPE</dd><dt>참고</dt><dd>보통 &#39;비피이&#39;로 읽지 않고 영문 약어 그대로 쓴다. 다듬은 말은 &#39;바이트 쌍 인코딩&#39;.</dd></dl>
+    <h4>관련어</h4><div class="rel"><a href="../tokenizer/">토크나이저</a><a href="../vocabulary/">어휘 집합</a><a href="../token/">토큰</a><a href="../natural-language-processing/">자연어 처리</a></div>
+    <p class="checked">마지막 확인 2026-10-14<br>뜻풀이는 학습용 참고 자료입니다.</p>
+  </section></main>
+  <aside>
+    <div class="box"><h3>내가 찾은 단어 <label class="sw"><input type="checkbox" data-autosave checked>자동저장</label></h3>
+      <p class="empty-s">최근 검색어가 없습니다.</p></div>
+    <div class="box"><h3>내 단어장 <a href="../?view=wordbook">전체 0 ›</a></h3><p class="empty-s">표제어 옆 + 를 눌러 단어를 담아 보세요.</p></div>
+    <div class="btns2"><a href="../?view=notation">AI 바로쓰기</a><a href="../?view=all">전체 용어</a></div>
+    <div class="box tips"><h3>사전 사용팁<span class="tipnav"><span data-tipno>1 / 5</span><button data-tip="-1" aria-label="이전 팁">‹</button><button data-tip="1" aria-label="다음 팁">›</button></span></h3><p data-tiptext aria-live="polite">띄어쓰기는 신경 쓰지 않아도 됩니다. "생성형ai"로 찾아도 "생성형 AI"가 나옵니다.</p></div>
+  </aside></div><footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.</footer></div>
+<script>var AIT_BASE='../',AIT_ENTRY="BPE";</script>
+<script src="../data/terms.js?v=82907e4e"></script><script src="../app.js?v=82907e4e"></script>
+</body></html>
