@@ -1,10 +1,10 @@
 // 검색 로직 점검: node check.js  (브라우저 없이 app.js 를 주소별로 그려 보고 결과 HTML 을 확인)
 const fs = require('fs'), vm = require('vm'), assert = require('assert');
 const src = fs.readFileSync(__dirname + '/data/terms.js', 'utf8') + '\n' + fs.readFileSync(__dirname + '/app.js', 'utf8');
-function page(search) {
+function page(search, extra = {}) {
   const app = { innerHTML: '' }, mem = {};
   const ctx = {
-    URLSearchParams, console,
+    URLSearchParams, console, ...extra,
     location: { search, replace(u) { app.redirect = u; } },
     localStorage: { getItem: k => mem[k] ?? null, setItem: (k, v) => mem[k] = v },
     document: { title: '', body: {}, documentElement: { style: { setProperty() {} } }, getElementById: () => app, addEventListener() {} },
@@ -22,7 +22,16 @@ has(page('?q=hallucination'), '할루시네이션');                            
 has(page('?q=' + encodeURIComponent('<script>')), '&lt;script&gt;');                    // 이스케이프
 assert(!page('?q=' + encodeURIComponent('<img src=x>')).includes('<img src=x>'));
 has(page('?q=zzzzqqq'), 'class="none"');
-has(page('?entry=' + encodeURIComponent('챗GPT')), '뜻풀이', '예문', '관련어');
+has(page('?entry=' + encodeURIComponent('챗GPT')), 'chatgpt/');                          // 예전 주소 → 정적 페이지
+has(page('', { AIT_BASE: '../', AIT_ENTRY: '챗GPT' }), '<h1 class="w">', '뜻풀이', '예문', '관련어', '../?tag=', 'href="../rag/'.slice(0, 9));
+// 정적 페이지: 용어 수만큼, 주소 겹침 없이
+require('child_process').execFileSync('node', [__dirname + '/build.js']);
+const n = (fs.readFileSync(__dirname + '/data/terms.js', 'utf8').match(/\bterm:/g) || []).length || (fs.readFileSync(__dirname + '/data/terms.js', 'utf8').match(/"term":/g) || []).length;
+const pages = fs.readdirSync(__dirname).filter(d => fs.existsSync(`${__dirname}/${d}/index.html`));
+assert.strictEqual(pages.length, n, 'pages ' + pages.length + ' != terms ' + n);
+const one = fs.readFileSync(__dirname + '/rag/index.html', 'utf8');
+has(one, '<link rel="canonical"', '<h1 class="w">', '<meta name="description"');
+assert.strictEqual((fs.readFileSync(__dirname + '/sitemap.xml', 'utf8').match(/<loc>/g) || []).length, n + 1);
 has(page('?tag=' + encodeURIComponent('에이전트')), 'pagehead');
 has(page('?view=notation'), 'AI 바로쓰기');
 for (const t of ['word', 'idiom', 'def', 'ex', 'spell']) page('?q=AI&tab=' + t);

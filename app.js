@@ -12,7 +12,9 @@ const q = (P.get('q') || '').trim().slice(0, 50);
 const tab = TABS.some(t => t[0] === P.get('tab')) ? P.get('tab') : 'all';
 const lv = LV.includes(P.get('lv')) ? P.get('lv') : '';
 const tag = P.get('tag') || '';
-const entryName = P.get('entry');
+// 용어별 정적 페이지(<slug>/index.html)는 AIT_BASE='../', AIT_ENTRY='용어' 를 먼저 정해 두고 이 파일을 불러온다
+const BASE = window.AIT_BASE || './';
+const entryName = window.AIT_ENTRY || P.get('entry');
 const view = P.get('view');
 
 // ---------- 도우미 ----------
@@ -23,7 +25,7 @@ const store = {
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s).toLowerCase().replace(/\s+/g, '');
 const strip = s => s.replace(/\(.*?\)/g, '').trim();
-const qs = o => './?' + new URLSearchParams(Object.entries(o).filter(([, v]) => v)).toString();
+const qs = o => BASE + '?' + new URLSearchParams(Object.entries(o).filter(([, v]) => v)).toString();
 // 띄어쓰기를 무시하고 찾는 정규식: "생성형ai" 가 "생성형 AI" 에 걸린다
 const makeRx = (s, flags) => { const n = norm(s); return n ? new RegExp([...n].map(c => c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('\\s*'), flags) : null; };
 const rxt = makeRx(q, 'i');
@@ -60,17 +62,19 @@ document.documentElement.style.setProperty('--fs', [0.9, 1, 1.15][store.get('fs'
 
 // ---------- 조각 ----------
 const icon = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>';
-const logo = '<a class="logo" href="./"><span class="mark">AI</span>용어사전</a>';
+const logo = `<a class="logo" href="${BASE}"><span class="mark">AI</span>용어사전</a>`;
 const lvBadge = t => `<span class="lv lv-${t.level}">${t.level}</span>`;
 const addBtn = t => { const on = saved().includes(t.term); return `<button class="add" data-add="${esc(t.term)}" aria-pressed="${on}" title="${on ? '단어장에서 빼기' : '단어장에 담기'}" aria-label="${esc(t.term)} ${on ? '단어장에서 빼기' : '단어장에 담기'}">${on ? '✓' : '+'}</button>`; };
 const fld = t => topics(t)[0] ? `<span class="fld">『${esc(topics(t)[0])}』</span> ` : '';
-const ent = t => qs({ entry: t.term });
+// 주소 이름: 표제어가 영문이면 표제어(RAG → rag), 아니면 영문 원어(프롬프트 → prompt)
+const slug = t => (/^[\x20-\x7e]+$/.test(t.term) ? t.term : t.en).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const ent = t => `${BASE}${slug(t)}/`;
 
 function searchForm(big) {
   const adv = big ? `<button type="button" class="adv-btn" data-adv aria-expanded="false" aria-controls="adv">고급 검색</button>` : '';
   const panel = big ? `<div class="adv" id="adv" hidden><b>난이도</b>${['', ...LV].map(l => `<label><input type="radio" name="lv" value="${l}"${l === lv ? ' checked' : ''}>${l || '전체'}</label>`).join('')}<span class="date">검색어 없이 난이도만 고르면 그 난이도 용어를 모두 보여 줍니다.</span></div>`
     : (lv ? `<input type="hidden" name="lv" value="${lv}">` : '');
-  return `<form class="sform${big ? ' big' : ''}" action="./" role="search" autocomplete="off">
+  return `<form class="sform${big ? ' big' : ''}" action="${BASE}" role="search" autocomplete="off">
     <div class="srow"><div class="sbox">
       <input name="q" value="${esc(q)}" placeholder="AI 용어를 입력해 주세요" aria-label="AI 용어 검색" maxlength="50" autocapitalize="off" spellcheck="false">
       <button type="button" class="clr" data-clr aria-label="검색어 지우기"${q ? '' : ' hidden'}>×</button>
@@ -235,15 +239,18 @@ function entryPage(t) {
   const groups = [];
   t.defs.forEach(d => { const g = groups.find(x => x.src === d.src); g ? g.items.push(d.text) : groups.push({ src: d.src, items: [d.text] }); });
   const rel = (t.rel || []).map(r => { const x = byName(r); return `<a href="${x ? ent(x) : qs({ q: r })}">${esc(r)}</a>`; }).join('');
-  const main = `<p class="crumb"><a href="./">AI 용어사전</a> › ${topics(t).map(x => `<a href="${qs({ tag: x })}">${esc(x)}</a>`).join(' · ')}</p>
+  const main = `<p class="crumb"><a href="${BASE}">AI 용어사전</a> › ${topics(t).map(x => `<a href="${qs({ tag: x })}">${esc(x)}</a>`).join(' · ')}</p>
   <section class="sec ent">
-    <div class="ent-h"><div class="hw"><h2 class="w">${esc(t.term)}</h2><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
+    <div class="ent-h"><div class="hw"><h1 class="w">${esc(t.term)}</h1><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
       ${t.alias?.length ? `<p class="alias">다른 이름 · ${t.alias.map(esc).join(', ')}</p>` : ''}</div>
     <h4>뜻풀이</h4>${groups.map(g => `<p class="dsrc">${esc(g.src)}</p><ol class="means${g.items.length > 1 ? ' multi' : ''}">${g.items.map(x => `<li><span class="pos">「${t.pos}」</span> ${fld(t)}${esc(x)}</li>`).join('')}</ol>`).join('')}
     ${t.idioms?.length ? `<h4>관용구·함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> — ${esc(i.d)}</li>`).join('')}</ul>` : ''}
+    ${t.like ? `<h4>쉬운 비유</h4><p class="like">${esc(t.like)}</p>` : ''}
     <h4>예문</h4><ul class="exl">${t.ex.map(e => `<li>${hl(e, makeRx(t.term, 'gi'))}</li>`).join('')}</ul>
+    ${t.vs?.length ? `<h4>헷갈리는 용어 비교</h4><dl class="sp vs">${t.vs.map(v => { const x = byName(v.w); return `<dt>${x ? `<a href="${ent(x)}">${esc(v.w)}</a>` : esc(v.w)}</dt><dd>${esc(v.d)}</dd>`; }).join('')}</dl>` : ''}
     <h4>맞춤법·표기법</h4>${spellDl(t)}
     ${rel ? `<h4>관련어</h4><div class="rel">${rel}</div>` : ''}
+    ${t.checked ? `<p class="checked">마지막 확인 ${esc(t.checked)} · 뜻풀이는 학습용 참고 자료입니다.</p>` : ''}
   </section>`;
   return frame(main, false);
 }
@@ -252,7 +259,8 @@ function entryPage(t) {
 function render() {
   const app = document.getElementById('app');
   const t = entryName && byName(entryName);
-  if (t) { document.title = `${t.term} : AI 용어사전`; app.innerHTML = entryPage(t); }
+  if (t && !window.AIT_ENTRY) { location.replace(ent(t)); } // 예전 ?entry= 주소는 정적 페이지로
+  else if (t) { app.innerHTML = entryPage(t); }
   else if (q) { document.title = `${q} : AI 용어사전`; app.innerHTML = results(); }
   else if (entryName) { location.replace(qs({ q: entryName })); }
   else if (view || tag || lv) { document.title = 'AI 용어사전'; app.innerHTML = browse(); }
