@@ -47,5 +47,6 @@ has(page('?tag=' + encodeURIComponent('에이전트')), 'pagehead');
 has(page('?view=notation'), 'AI 바로쓰기');
 for (const t of ['word', 'idiom', 'def', 'ex', 'spell']) page('?q=AI&tab=' + t);
 console.log('check ok');
+for (const f of ['index.html', 'shap/index.html']) assert(fs.readFileSync(__dirname + '/' + f, 'utf8').includes('og:image" content="https://macultist.kr/aiterms/og.png'), 'og:image ' + f);   // 링크 미리보기 그림
 // 긴 작대기(— –)는 쓰지 않는다. 대신 -
 for (const f of ['index.html', 'privacy.html', 'app.js', 'data/terms.js']) assert(!/[—–―]/.test(fs.readFileSync(__dirname + '/' + f, 'utf8')), '긴 작대기 ' + f);

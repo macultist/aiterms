@@ -54,6 +54,7 @@ ${gtag}
 <meta name="description" content="${homeDesc}">
 <link rel="canonical" href="${SITE}">
 <meta property="og:type" content="website"><meta property="og:title" content="AI 용어사전"><meta property="og:description" content="${homeDesc}"><meta property="og:url" content="${SITE}">
+<meta property="og:image" content="${SITE}og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="AI 용어사전"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image">
 ${fav}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="style.css">
@@ -79,6 +80,7 @@ ${gtag}
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
+<meta property="og:image" content="${SITE}og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="AI 용어사전"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image">
 ${fav}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="../style.css">
@@ -112,6 +114,7 @@ ${tail('')}
 </body></html>
 `));
 
+// og.png(링크 미리보기 1200x630)는 docs/og.html 을 크롬 headless --window-size=1200,630 --screenshot 으로 찍은 것
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(dir, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
