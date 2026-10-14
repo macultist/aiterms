@@ -36,11 +36,11 @@ const hl = (s, rx = makeRx(q, 'gi')) => {
   return out + esc(s.slice(i));
 };
 const has = s => !!rxt && rxt.test(s);
-// 표제어, 영문, 다른 표기와 맞는 정도: 3 같음, 2 앞부분, 1 포함, 0 없음
+// 표제어, 영문, 다른 이름, 주의할 표기와 맞는 정도: 3 같음, 2 앞부분, 1 포함, 0 없음
 function score(t, n = norm(q)) {
   if (!n) return 0;
   let best = 0;
-  for (const k of [t.term, t.en, ...(t.alias || [])]) {
+  for (const k of [t.term, t.en, ...(t.alias || []), ...t.note.no.map(strip)]) {
     const x = norm(k);
     const s = x === n ? 3 : x.startsWith(n) ? 2 : x.includes(n) ? 1 : 0;
     if (s > best) best = s;

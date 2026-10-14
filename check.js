@@ -22,6 +22,12 @@ has(page('?q=hallucination'), '할루시네이션');                            
 has(page('?q=' + encodeURIComponent('<script>')), '&lt;script&gt;');                    // 이스케이프
 assert(!page('?q=' + encodeURIComponent('<img src=x>')).includes('<img src=x>'));
 has(page('?q=zzzzqqq'), 'class="none"');
+has(page('?q=' + encodeURIComponent('맵핑')), 'class="fixbar"', 'class="w"', '매핑');     // 주의할 표기로 찾아도 단어가 나온다
+// 같은 말이 다른 이름(alias)과 주의할 표기(note.no)에 같이 있으면 안 된다
+{ const w = {}; vm.runInNewContext(fs.readFileSync(__dirname + '/data/terms.js', 'utf8'), { window: w });
+  const k = s => String(s).replace(/\(.*?\)/g, '').toLowerCase().replace(/\s+/g, '');
+  const bad = w.TERMS.flatMap(t => t.note.no.filter(x => x.replace(/\(.*?\)/g, '').trim() === t.term || t.alias.some(a => k(a) === k(x))).map(x => t.term + ': ' + x));
+  assert.strictEqual(bad.length, 0, 'alias/no 겹침 ' + bad.slice(0, 5).join(', ')); }
 has(page('?entry=' + encodeURIComponent('챗GPT')), 'chatgpt/');                          // 예전 주소 → 정적 페이지
 has(page('', { AIT_BASE: '../', AIT_ENTRY: '챗GPT' }), '<h1 class="w">', '뜻풀이', '예문', '관련어', '../?tag=', 'href="../rag/'.slice(0, 9));
 // 정적 페이지: 용어 수만큼, 주소 겹침 없이

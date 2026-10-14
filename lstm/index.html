@@ -7,8 +7,8 @@
 <meta property="og:type" content="article"><meta property="og:title" content="LSTM(long short-term memory) 뜻 : AI 용어사전"><meta property="og:description" content="오래 기억할 것과 잊을 것을 스스로 골라 가며 시퀀스를 읽는 신경망. 단순한 RNN보다 긴 문장을 잘 기억한다. 메모장에 쓸 것, 지울 것, 읽을 것을 문지기가 정해 주는 것과 비슷하다. 중요한 내용만 오래 남는다."><meta property="og:url" content="https://macultist.kr/aiterms/lstm/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../style.css?v=82907e4e">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"LSTM","alternateName":["long short-term memory","장단기 메모리","롱 숏텀 메모리","엘에스티엠","장단기 기억"],"description":"오래 기억할 것과 잊을 것을 스스로 골라 가며 시퀀스를 읽는 신경망. 단순한 RNN보다 긴 문장을 잘 기억한다.","url":"https://macultist.kr/aiterms/lstm/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
+<link rel="stylesheet" href="../style.css?v=395e7558">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"LSTM","alternateName":["long short-term memory","장단기 메모리","장단기 기억"],"description":"오래 기억할 것과 잊을 것을 스스로 골라 가며 시퀀스를 읽는 신경망. 단순한 RNN보다 긴 문장을 잘 기억한다.","url":"https://macultist.kr/aiterms/lstm/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
 </head><body class="res">
 <div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
     <div class="srow"><div class="sbox">
@@ -22,7 +22,7 @@
   <div class="wrap"><main><p class="crumb"><a href="../">AI 용어사전</a> › <a href="../?tag=%EB%AA%A8%EB%8D%B8">모델</a>, <a href="../?tag=%EC%96%B8%EC%96%B4">언어</a>, <a href="../?tag=%ED%95%99%EC%8A%B5">학습</a></p>
   <section class="sec ent">
     <div class="ent-h"><div class="hw"><h1 class="w">LSTM</h1><span class="orig">long short-term memory</span><span class="lv lv-전문">전문</span><button class="add" data-add="LSTM" aria-pressed="false" title="단어장에 담기" aria-label="LSTM 단어장에 담기">+</button></div>
-      <p class="alias">다른 이름: 장단기 메모리, 롱 숏텀 메모리, 엘에스티엠, 장단기 기억</p></div>
+      <p class="alias">다른 이름: 장단기 메모리, 장단기 기억</p></div>
     <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『모델』</span> 오래 기억할 것과 잊을 것을 스스로 골라 가며 시퀀스를 읽는 신경망. 단순한 RNN보다 긴 문장을 잘 기억한다.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『모델』</span> 음성 인식, 번역, 시계열 예측에서 트랜스포머 이전의 표준이었다. 파라미터와 계산이 늘지만 긴 의존성을 훨씬 잘 다룬다. 요즘은 짧은 시계열이나 가벼운 모델에서 쓴다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">「명사」</span> <span class="fld">『모델』</span> 셀 상태 c_t를 가산 경로로 유지하고 입력, 망각, 출력 게이트(시그모이드)가 정보의 쓰기, 삭제, 읽기를 조절한다. 가산 경로 덕분에 기울기가 긴 시간 동안 보존되어 소실이 완화된다.</li></ol>
     <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>망각 게이트</b> — 셀 상태에서 지울 정보를 정하는 문.</li><li><b>셀 상태</b> — 정보를 멀리 전달하는 고속도로 같은 경로.</li></ul>
     <h4>쉬운 비유</h4><p class="like">메모장에 쓸 것, 지울 것, 읽을 것을 문지기가 정해 주는 것과 비슷하다. 중요한 내용만 오래 남는다.</p>
@@ -30,9 +30,9 @@
     <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt><a href="../gru/">GRU</a></dt><dd>LSTM은 세 개의 게이트와 별도의 셀 상태가 있고, GRU는 게이트 두 개로 단순화해 파라미터가 적다. 성능은 과제에 따라 엇비슷하다.</dd></dl>
     <h4>맞춤법/표기법</h4><dl class="sp"><dt>바른 표기</dt><dd class="ok">LSTM</dd>
   <dt>주의할 표기</dt><dd class="nos"><span>엘에스티엠</span><span>롱숏텀메모리</span></dd>
-  <dt>원어</dt><dd>LSTM (Long Short-Term Memory)</dd><dt>다른 이름</dt><dd>장단기 메모리, 롱 숏텀 메모리, 엘에스티엠, 장단기 기억</dd><dt>참고</dt><dd>&#39;장단기 메모리&#39;로 번역하며 읽을 때는 &#39;엘에스티엠&#39;.</dd></dl>
+  <dt>원어</dt><dd>LSTM (Long Short-Term Memory)</dd><dt>다른 이름</dt><dd>장단기 메모리, 장단기 기억</dd><dt>참고</dt><dd>&#39;장단기 메모리&#39;로 번역하며 읽을 때는 &#39;엘에스티엠&#39;.</dd></dl>
     <h4>관련어</h4><div class="rel"><a href="../rnn/">RNN</a><a href="../gru/">GRU</a><a href="../vanishing-gradient/">기울기 소실</a><a href="../sequence-to-sequence/">시퀀스 투 시퀀스</a><a href="../transformer/">트랜스포머</a></div>
-    <p class="checked">마지막 확인 2026-10-14<br>뜻풀이는 학습용 참고 자료입니다.</p>
+    <p class="checked">마지막 확인 2026-10-15<br>뜻풀이는 학습용 참고 자료입니다.</p>
   </section></main>
   <aside>
     <div class="box"><h3>내가 찾은 단어 <label class="sw"><input type="checkbox" data-autosave checked>자동저장</label></h3>
@@ -42,5 +42,5 @@
     <div class="box tips"><h3>사전 사용팁<span class="tipnav"><span data-tipno>1 / 5</span><button data-tip="-1" aria-label="이전 팁">‹</button><button data-tip="1" aria-label="다음 팁">›</button></span></h3><p data-tiptext aria-live="polite">띄어쓰기는 신경 쓰지 않아도 됩니다. "생성형ai"로 찾아도 "생성형 AI"가 나옵니다.</p></div>
   </aside></div><footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.</footer></div>
 <script>var AIT_BASE='../',AIT_ENTRY="LSTM";</script>
-<script src="../data/terms.js?v=82907e4e"></script><script src="../app.js?v=82907e4e"></script>
+<script src="../data/terms.js?v=395e7558"></script><script src="../app.js?v=395e7558"></script>
 </body></html>
