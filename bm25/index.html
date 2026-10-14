@@ -9,7 +9,7 @@
 <meta property="og:type" content="article"><meta property="og:title" content="BM25(BM25) 뜻 : AI 용어사전"><meta property="og:description" content="문서에 질문 속 단어가 얼마나 자주, 얼마나 특별하게 나오는지로 점수를 매기는 전통적인 검색 공식. 책 뒤 찾아보기에서 단어가 몇 번 나오는지와 그 단어가 얼마나 드문지를 따져 어느 쪽이 더 관련 있는지 매기는 것과 같다."><meta property="og:url" content="https://macultist.kr/aiterms/bm25/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../style.css?v=90e36919">
+<link rel="stylesheet" href="../style.css?v=40117086">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"BM25","alternateName":["BM25","Okapi BM25","BM 25","오카피 BM25"],"description":"문서에 질문 속 단어가 얼마나 자주, 얼마나 특별하게 나오는지로 점수를 매기는 전통적인 검색 공식.","url":"https://macultist.kr/aiterms/bm25/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
 </head><body class="res">
 <div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
@@ -26,7 +26,7 @@
     <div class="ent-h"><div class="hw"><h1 class="w">BM25</h1><span class="orig">BM25</span><span class="lv lv-실무">실무</span><button class="add" data-add="BM25" aria-pressed="false" title="단어장에 담기" aria-label="BM25 단어장에 담기">+</button></div>
       <p class="alias">다른 이름: Okapi BM25, BM 25, 오카피 BM25</p></div>
     <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(데이터)</span> 문서에 질문 속 단어가 얼마나 자주, 얼마나 특별하게 나오는지로 점수를 매기는 전통적인 검색 공식.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(데이터)</span> 엘라스틱서치 같은 검색 엔진의 기본 점수 방식이다. 단어 일치에 강해 하이브리드 검색에서 벡터 검색의 짝으로 자주 쓴다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(데이터)</span> TF-IDF 계열의 확률적 관련성 모델. 단어 빈도(TF)를 포화시키고 문서 길이로 정규화하며 역문서 빈도(IDF)로 희귀 단어에 가중치를 준다. k1과 b 두 하이퍼파라미터로 포화 정도와 길이 보정을 조절한다.</li></ol>
-    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>BM25 점수</b> — 질문과 문서의 단어 일치로 계산한 관련도.</li><li><b>키워드 검색</b> — 단어 일치를 기반으로 하는 검색.</li></ul>
+    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>BM25 점수</b> - 질문과 문서의 단어 일치로 계산한 관련도.</li><li><b>키워드 검색</b> - 단어 일치를 기반으로 하는 검색.</li></ul>
     <h4>쉬운 비유</h4><p class="like">책 뒤 찾아보기에서 단어가 몇 번 나오는지와 그 단어가 얼마나 드문지를 따져 어느 쪽이 더 관련 있는지 매기는 것과 같다.</p>
     <h4>예문</h4><ul class="exl"><li><strong class="hl">BM25</strong>로 먼저 후보 100개를 뽑고 벡터 검색 결과와 합쳤다.</li><li><strong class="hl">BM25</strong>는 질문에 쓰인 단어가 문서에 없으면 점수를 주지 못한다.</li><li>한국어 문서에는 <strong class="hl">BM25</strong> 전에 형태소 분석으로 토큰을 나누면 검색 품질이 좋아진다.</li></ul>
     <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt>TF-IDF</dt><dd>TF-IDF는 단어 빈도와 희귀도를 곱한 고전 가중치이고, BM25는 이를 개선해 빈도 효과가 무한히 커지지 않게 하고 문서 길이도 보정한 점수식이다.</dd><dt><a href="../semantic-search/">시맨틱 검색</a></dt><dd>BM25는 단어가 겹쳐야 점수를 받지만, 시맨틱 검색은 단어가 달라도 뜻이 가까우면 찾는다.</dd></dl>
@@ -46,5 +46,5 @@
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="../privacy.html">개인정보처리방침</a></footer>
 <script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="unsafe-url";f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>
 <script>var AIT_BASE='../',AIT_ENTRY="BM25";</script>
-<script src="../data/terms.js?v=90e36919"></script><script src="../app.js?v=90e36919"></script>
+<script src="../data/terms.js?v=40117086"></script><script src="../app.js?v=40117086"></script>
 </body></html>

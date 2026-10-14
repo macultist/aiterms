@@ -47,3 +47,5 @@ has(page('?tag=' + encodeURIComponent('에이전트')), 'pagehead');
 has(page('?view=notation'), 'AI 바로쓰기');
 for (const t of ['word', 'idiom', 'def', 'ex', 'spell']) page('?q=AI&tab=' + t);
 console.log('check ok');
+// 긴 작대기(— –)는 쓰지 않는다. 대신 -
+for (const f of ['index.html', 'privacy.html', 'app.js', 'data/terms.js']) assert(!/[—–―]/.test(fs.readFileSync(__dirname + '/' + f, 'utf8')), '긴 작대기 ' + f);

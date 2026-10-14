@@ -9,7 +9,7 @@
 <meta property="og:type" content="article"><meta property="og:title" content="연합 학습(federated learning) 뜻 : AI 용어사전"><meta property="og:description" content="데이터를 한곳에 모으지 않고 각자의 기기에서 학습한 결과만 모아서 하나의 모델을 만드는 방법. 학생들이 각자 집에서 공부한 풀이 요령만 선생님께 보내고, 선생님이 요령을 모아 정리본을 다시 나눠 주는 것과 같다. 시험지는 집 밖으로 나가지 않는다."><meta property="og:url" content="https://macultist.kr/aiterms/federated-learning/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../style.css?v=90e36919">
+<link rel="stylesheet" href="../style.css?v=40117086">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"연합 학습","alternateName":["federated learning","Federated Learning","페더레이티드 러닝","FL","연합학습","분산 연합 학습"],"description":"데이터를 한곳에 모으지 않고 각자의 기기에서 학습한 결과만 모아서 하나의 모델을 만드는 방법.","url":"https://macultist.kr/aiterms/federated-learning/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
 </head><body class="res">
 <div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
@@ -26,7 +26,7 @@
     <div class="ent-h"><div class="hw"><h1 class="w">연합 학습</h1><span class="orig">federated learning</span><span class="lv lv-전문">전문</span><button class="add" data-add="연합 학습" aria-pressed="false" title="단어장에 담기" aria-label="연합 학습 단어장에 담기">+</button></div>
       <p class="alias">다른 이름: Federated Learning, 페더레이티드 러닝, FL, 연합학습, 분산 연합 학습</p></div>
     <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(학습)</span> 데이터를 한곳에 모으지 않고 각자의 기기에서 학습한 결과만 모아서 하나의 모델을 만드는 방법.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(학습)</span> 병원이나 은행처럼 민감한 정보를 밖으로 내보내기 어려운 조직들이 함께 모델을 만들 때 쓴다. 휴대폰 키보드 추천처럼 사용자 기기에서 학습하는 경우도 있다. 기기마다 데이터 분포가 달라 성능이 흔들리고 통신 비용이 든다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(학습)</span> 중앙 서버가 전역 모델을 배포하고 각 클라이언트가 로컬 데이터로 학습한 뒤 가중치나 기울기 업데이트만 서버로 보내 집계하는 분산 학습 방식이다. FedAvg가 대표적 알고리즘이며, 업데이트에서 정보가 새지 않도록 차등 프라이버시나 안전한 집계를 함께 쓴다. 클라이언트 간 데이터 분포 차이(비 IID)가 핵심 난제다.</li></ol>
-    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>FedAvg</b> — 각 기기에서 학습한 가중치를 서버에서 평균내어 합치는 연합 학습의 기본 알고리즘.</li><li><b>비 IID 데이터</b> — 기기마다 데이터 분포가 달라 한쪽으로 쏠린 상태.</li></ul>
+    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>FedAvg</b> - 각 기기에서 학습한 가중치를 서버에서 평균내어 합치는 연합 학습의 기본 알고리즘.</li><li><b>비 IID 데이터</b> - 기기마다 데이터 분포가 달라 한쪽으로 쏠린 상태.</li></ul>
     <h4>쉬운 비유</h4><p class="like">학생들이 각자 집에서 공부한 풀이 요령만 선생님께 보내고, 선생님이 요령을 모아 정리본을 다시 나눠 주는 것과 같다. 시험지는 집 밖으로 나가지 않는다.</p>
     <h4>예문</h4><ul class="exl"><li>여러 병원이 환자 기록을 공유하지 않고 <strong class="hl">연합 학습</strong>으로 진단 모델을 같이 만들었다.</li><li>스마트폰 자동완성 모델은 기기에서 학습한 변화분만 서버로 보내 <strong class="hl">연합 학습</strong>한다.</li><li><strong class="hl">연합 학습</strong>은 데이터가 이동하지 않아도 업데이트에서 정보가 새지 않는지 따로 점검해야 한다.</li></ul>
     <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt><a href="../distributed-training/">분산 학습</a></dt><dd>분산 학습은 속도를 위해 여러 장치에 연산을 나누는 방식이고 데이터를 한곳에서 나눠 주기도 한다. 연합 학습은 프라이버시 때문에 데이터가 각자 자리에 머무르는 것이 전제다.</dd></dl>
@@ -46,5 +46,5 @@
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="../privacy.html">개인정보처리방침</a></footer>
 <script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="unsafe-url";f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>
 <script>var AIT_BASE='../',AIT_ENTRY="연합 학습";</script>
-<script src="../data/terms.js?v=90e36919"></script><script src="../app.js?v=90e36919"></script>
+<script src="../data/terms.js?v=40117086"></script><script src="../app.js?v=40117086"></script>
 </body></html>

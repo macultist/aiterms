@@ -1,5 +1,5 @@
 'use strict';
-// AI 용어사전 — 화면 전체를 주소(?q= ?tab= ?entry= ?tag= ?lv= ?view=)에 따라 그린다.
+// AI 용어사전 - 화면 전체를 주소(?q= ?tab= ?entry= ?tag= ?lv= ?view=)에 따라 그린다.
 const T = window.TERMS;
 const LV = ['일상', '실무', '전문'];
 const LVNAME = { 일상: '일상 용어', 실무: '실무 용어', 전문: '전문 용어' };
@@ -243,7 +243,7 @@ function entryPage(t) {
     <div class="ent-h"><div class="hw"><h1 class="w">${esc(t.term)}</h1><span class="orig">${esc(t.en)}</span>${lvBadge(t)}${addBtn(t)}</div>
       ${t.alias?.length ? `<p class="alias">다른 이름: ${t.alias.map(esc).join(', ')}</p>` : ''}</div>
     <h4>뜻풀이</h4>${groups.map(g => `<p class="dsrc">${esc(g.src)}</p><ol class="means${g.items.length > 1 ? ' multi' : ''}">${g.items.map(x => `<li><span class="pos">[${t.pos}]</span> ${fld(t)}${esc(x)}</li>`).join('')}</ol>`).join('')}
-    ${t.idioms?.length ? `<h4>관용구/함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> — ${esc(i.d)}</li>`).join('')}</ul>` : ''}
+    ${t.idioms?.length ? `<h4>관용구/함께 쓰는 말</h4><ul class="idl">${t.idioms.map(i => `<li><b>${esc(i.p)}</b> - ${esc(i.d)}</li>`).join('')}</ul>` : ''}
     ${t.like ? `<h4>쉬운 비유</h4><p class="like">${esc(t.like)}</p>` : ''}
     <h4>예문</h4><ul class="exl">${t.ex.map(e => `<li>${hl(e, makeRx(t.term, 'gi'))}</li>`).join('')}</ul>
     ${t.vs?.length ? `<h4>헷갈리는 용어 비교</h4><dl class="sp vs">${t.vs.map(v => { const x = byName(v.w); return `<dt>${x ? `<a href="${ent(x)}">${esc(v.w)}</a>` : esc(v.w)}</dt><dd>${esc(v.d)}</dd>`; }).join('')}</dl>` : ''}

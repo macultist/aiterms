@@ -9,7 +9,7 @@
 <meta property="og:type" content="article"><meta property="og:title" content="자기 일관성(self-consistency) 뜻 : AI 용어사전"><meta property="og:description" content="같은 문제를 AI에게 여러 번 풀게 하고 가장 많이 나온 답을 정답으로 고르는 방법. 같은 수학 문제를 열 명에게 따로 풀게 한 뒤 가장 많이 나온 답을 정답으로 보는 것과 같다."><meta property="og:url" content="https://macultist.kr/aiterms/self-consistency/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../style.css?v=90e36919">
+<link rel="stylesheet" href="../style.css?v=40117086">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"자기 일관성","alternateName":["self-consistency","셀프 컨시스턴시","자기 일관성 디코딩","self consistency","다수결 추론"],"description":"같은 문제를 AI에게 여러 번 풀게 하고 가장 많이 나온 답을 정답으로 고르는 방법.","url":"https://macultist.kr/aiterms/self-consistency/","inDefinedTermSet":"https://macultist.kr/aiterms/"}</script>
 </head><body class="res">
 <div id="app"><div class="top"><header class="gnb"><a class="logo" href="../"><span class="mark">AI</span>용어사전</a><form class="sform" action="../" role="search" autocomplete="off">
@@ -26,7 +26,7 @@
     <div class="ent-h"><div class="hw"><h1 class="w">자기 일관성</h1><span class="orig">self-consistency</span><span class="lv lv-전문">전문</span><button class="add" data-add="자기 일관성" aria-pressed="false" title="단어장에 담기" aria-label="자기 일관성 단어장에 담기">+</button></div>
       <p class="alias">다른 이름: 셀프 컨시스턴시, 자기 일관성 디코딩, self consistency, 다수결 추론</p></div>
     <h4>뜻풀이</h4><p class="dsrc">쉬운 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(프롬프트)</span> 같은 문제를 AI에게 여러 번 풀게 하고 가장 많이 나온 답을 정답으로 고르는 방법.</li></ol><p class="dsrc">실무 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(프롬프트)</span> 한 번만 풀면 틀릴 수 있는 수학이나 논리 문제에서 정확도를 올린다. 호출 횟수만큼 비용이 늘어나므로 중요한 판단에만 쓴다.</li></ol><p class="dsrc">전문 AI 사전</p><ol class="means"><li><span class="pos">[명사]</span> <span class="fld">(프롬프트)</span> 온도를 높여 서로 다른 사고 연쇄 경로를 여러 개 샘플링한 뒤, 최종 답을 다수결(또는 확률 가중 투표)로 모으는 디코딩 전략. 추론 경로가 달라도 같은 답으로 모이는 경향을 이용한다.</li></ol>
-    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>다수결 투표</b> — 여러 답 중 가장 많은 쪽을 고르는 일.</li><li><b>샘플링 경로</b> — 같은 문제를 다르게 풀어 낸 한 번의 추론 흐름.</li></ul>
+    <h4>관용구/함께 쓰는 말</h4><ul class="idl"><li><b>다수결 투표</b> - 여러 답 중 가장 많은 쪽을 고르는 일.</li><li><b>샘플링 경로</b> - 같은 문제를 다르게 풀어 낸 한 번의 추론 흐름.</li></ul>
     <h4>쉬운 비유</h4><p class="like">같은 수학 문제를 열 명에게 따로 풀게 한 뒤 가장 많이 나온 답을 정답으로 보는 것과 같다.</p>
     <h4>예문</h4><ul class="exl"><li><strong class="hl">자기 일관성</strong>으로 열 번 풀게 했더니 일곱 번 같은 답이 나와 그 답을 채택했다.</li><li><strong class="hl">자기 일관성</strong>은 호출을 열 배 하는 만큼 비용도 열 배라서 핵심 계산 검증에만 썼다.</li><li>답이 숫자나 짧은 선택지가 아니면 다수결을 내기 어려워 <strong class="hl">자기 일관성</strong>을 쓰기 힘들다.</li></ul>
     <h4>헷갈리는 용어 비교</h4><dl class="sp vs"><dt><a href="../beam-search/">빔 서치</a></dt><dd>빔 서치는 하나의 생성 안에서 여러 후보를 유지하며 확률 높은 문장을 고르고, 자기 일관성은 서로 독립적인 여러 답을 뽑아 다수결을 낸다.</dd><dt><a href="../chain-of-thought/">사고 연쇄</a></dt><dd>사고 연쇄는 한 번의 풀이에 단계를 쓰게 하고, 자기 일관성은 그 풀이를 여러 번 돌려 결과를 모은다. 둘은 함께 쓰는 경우가 많다.</dd></dl>
@@ -46,5 +46,5 @@
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="../privacy.html">개인정보처리방침</a></footer>
 <script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="unsafe-url";f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>
 <script>var AIT_BASE='../',AIT_ENTRY="자기 일관성";</script>
-<script src="../data/terms.js?v=90e36919"></script><script src="../app.js?v=90e36919"></script>
+<script src="../data/terms.js?v=40117086"></script><script src="../app.js?v=40117086"></script>
 </body></html>
