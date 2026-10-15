@@ -37,12 +37,13 @@ const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.
 // 쿠팡 파트너스 배너(공개 값, petfee, waste 와 같은 위젯). 광고는 본문 아래 한 곳만
 // 구글 애널리틱스(공개 측정 ID), 모든 페이지 <head> 바로 다음에 한 번. 검색어(?q=)는 주소, 이전 주소, 제목에서 빼고 보낸다
 const GA = 'G-8V2J5BZTHD';
-const gtag = `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA}"></script>
+const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://ads-partners.coupang.com; object-src 'none'; base-uri 'self'; form-action 'self'">`;
+const gtag = csp + `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());function nq(s){try{var u=new URL(s);u.searchParams.delete('q');return u.href}catch(e){return s}}var o={anonymize_ip:true,page_location:nq(location.href),page_referrer:nq(document.referrer)};if(/[?&]q=/.test(location.search))o.page_title='검색 : AI 용어사전';gtag('config','${GA}',o);</script>`;
 const CP = { tracking: 'AF5048356', widget: '1029096' };
 const tail = b => `<aside class="ads" aria-label="광고"><div class="ad-coupang" data-cp-widget="${CP.widget}" data-cp-tracking="${CP.tracking}"></div><p class="ad-note">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></aside>
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="${b}privacy.html">개인정보처리방침</a></footer>
-<script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="strict-origin-when-cross-origin";f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>`;
+<script>document.querySelectorAll(".ad-coupang").forEach(function(el){var w=Math.min(680,Math.max(300,Math.floor(el.clientWidth||320))),h=140,f=document.createElement("iframe");f.src="https://ads-partners.coupang.com/widgets.html?id="+el.dataset.cpWidget+"&template=carousel&trackingCode="+el.dataset.cpTracking+"&subId=&width="+w+"&height="+h;f.width=w;f.height=h;f.frameBorder="0";f.scrolling="no";f.referrerPolicy="strict-origin-when-cross-origin";f.setAttribute("sandbox","allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox");f.setAttribute("browsingtopics","");f.title="쿠팡 파트너스 추천 상품";el.appendChild(f)});</script>`;
 const homeDesc = '일상에서 가볍게 쓰는 AI 말부터 회사 실무 용어, 전문 용어까지. 뜻풀이, 관용구, 예문, 표기법을 한 번에 찾는 AI 용어사전.';
 fs.writeFileSync(path.join(dir, 'index.html'), bust(`<!doctype html>
 <html lang="ko">
@@ -56,7 +57,7 @@ ${gtag}
 <meta property="og:type" content="website"><meta property="og:title" content="AI 용어사전"><meta property="og:description" content="${homeDesc}"><meta property="og:url" content="${SITE}">
 <meta property="og:image" content="${SITE}og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="AI 용어사전"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image">
 ${fav}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="home">
@@ -82,7 +83,7 @@ ${gtag}
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
 <meta property="og:image" content="${SITE}og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="AI 용어사전"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image">
 ${fav}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
 <link rel="stylesheet" href="../style.css">
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 </head><body class="res">
@@ -105,7 +106,7 @@ ${gtag}
 <meta name="description" content="AI 용어사전의 개인정보처리방침입니다.">
 <link rel="canonical" href="${SITE}privacy.html">
 ${fav}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 </head><body class="res">
 <div class="top"><header class="gnb"><a class="logo" href="./"><span class="mark">AI</span>용어사전</a></header></div>

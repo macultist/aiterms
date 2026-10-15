@@ -54,3 +54,6 @@ for (const f of ['index.html', 'privacy.html', 'app.js', 'data/terms.js']) asser
 for (const f of ['index.html', 'rag/index.html']) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
   assert(h.includes('page_location:nq(location.href)') && h.includes('page_referrer:nq(document.referrer)'), 'GA 검색어 ' + f);
   assert(!h.includes('unsafe-url') && h.includes('referrerPolicy="strict-origin-when-cross-origin"'), '쿠팡 referrer ' + f); }
+// 낮음 4건 방어: 글꼴 무결성, 콘텐츠 보안 정책, 광고 sandbox, 저장값 모양 검사
+for (const f of ['index.html', 'rag/index.html', 'privacy.html']) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
+  assert(h.includes('Content-Security-Policy') && h.includes('pretendard.min.css" integrity="sha384-') && h.includes('setAttribute("sandbox"'), '보안 헤더 ' + f); }

@@ -18,8 +18,9 @@ const entryName = window.AIT_ENTRY || P.get('entry');
 const view = P.get('view');
 
 // ---------- 도우미 ----------
+// 저장값 모양이 기본값과 다르면(배열이어야 하는데 아니면 등) 기본값을 쓴다
 const store = {
-  get(k, d) { try { const v = JSON.parse(localStorage.getItem('aiterms.' + k)); return v ?? d; } catch { return d; } },
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem('aiterms.' + k)); return v != null && Array.isArray(v) === Array.isArray(d) && typeof v === typeof d ? v : d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem('aiterms.' + k, JSON.stringify(v)); } catch { } },
 };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
