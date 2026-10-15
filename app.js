@@ -121,7 +121,7 @@ function home() {
 
   return `<header class="gnb">${logo}<nav><a href="${qs({ view: 'all' })}">전체 용어</a><a href="${qs({ view: 'notation' })}">AI 바로쓰기</a><a href="${qs({ view: 'wordbook' })}">내 단어장</a></nav></header>
   <section class="hero">
-    <h1><em>AI</em> 용어사전</h1>
+    <h1><em>AI</em> <span style="margin-right:.026em">용</span><span style="margin-right:-.017em">어</span><span style="margin-right:.07em">사</span>전</h1>
     <p class="sub">일상 말부터 실무 용어, 더 나아가 전문 용어까지.</p>
     ${searchForm(true)}
     ${r.length ? `<div class="recent"><span class="lbl">최근 검색어</span>${recentChips(5)}<span data-morechips hidden>${r.slice(5).map(w => `<span class="chip"><a href="${qs({ q: w })}">${esc(w)}</a><button data-del="${esc(w)}" aria-label="${esc(w)} 지우기">×</button></span>`).join('')}</span><span class="ctl">${r.length > 5 ? '<button class="txtbtn" data-more>더보기</button>|' : ''}<button class="txtbtn" data-delall>모두삭제</button></span></div>` : ''}
