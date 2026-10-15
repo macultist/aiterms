@@ -42,7 +42,7 @@ h1,h2,h3,h4,p{margin:0}
 
 /* 첫 화면 */
 .hero{max-width:760px;margin:0 auto;padding:44px 16px 0}
-.hero h1{font-size:46px;font-weight:800;letter-spacing:-0.5px;font-kerning:none;font-feature-settings:"kern" 0;text-align:center;margin-bottom:22px;line-height:1.2}
+.hero h1{font-size:46px;font-weight:800;text-align:center;margin-bottom:22px;line-height:1.2}
 .hero h1 em{font-style:normal;color:var(--g)}
 .hero .sub{text-align:center;color:var(--t3);font-size:16.8px;font-weight:700;margin:-12px 0 22px}
 .recent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:13px}
