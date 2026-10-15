@@ -50,3 +50,7 @@ console.log('check ok');
 for (const f of ['index.html', 'shap/index.html']) assert(fs.readFileSync(__dirname + '/' + f, 'utf8').includes('og:image" content="https://macultist.kr/aiterms/og.png'), 'og:image ' + f);   // 링크 미리보기 그림
 // 긴 작대기(— –)는 쓰지 않는다. 대신 -
 for (const f of ['index.html', 'privacy.html', 'app.js', 'data/terms.js']) assert(!/[—–―]/.test(fs.readFileSync(__dirname + '/' + f, 'utf8')), '긴 작대기 ' + f);
+// 검색어는 밖으로 안 보낸다: GA 에는 ?q= 뺀 주소, 쿠팡 광고에는 출처만
+for (const f of ['index.html', 'rag/index.html']) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
+  assert(h.includes('page_location:nq(location.href)') && h.includes('page_referrer:nq(document.referrer)'), 'GA 검색어 ' + f);
+  assert(!h.includes('unsafe-url') && h.includes('referrerPolicy="strict-origin-when-cross-origin"'), '쿠팡 referrer ' + f); }
