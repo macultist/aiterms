@@ -38,7 +38,7 @@ const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.
 // 구글 애널리틱스(공개 측정 ID), 모든 페이지 <head> 바로 다음에 한 번. 검색어(?q=)는 주소, 이전 주소, 제목에서 빼고 보낸다
 const GA = 'G-8V2J5BZTHD';
 const gtag = `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());function nq(s){try{var u=new URL(s);u.searchParams.delete('q');return u.href}catch(e){return s}}gtag('config','${GA}',{anonymize_ip:true,page_location:nq(location.href),page_referrer:nq(document.referrer),page_title:/[?&]q=/.test(location.search)?'검색 : AI 용어사전':document.title});</script>`;
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());function nq(s){try{var u=new URL(s);u.searchParams.delete('q');return u.href}catch(e){return s}}var o={anonymize_ip:true,page_location:nq(location.href),page_referrer:nq(document.referrer)};if(/[?&]q=/.test(location.search))o.page_title='검색 : AI 용어사전';gtag('config','${GA}',o);</script>`;
 const CP = { tracking: 'AF5048356', widget: '1029096' };
 const tail = b => `<aside class="ads" aria-label="광고"><div class="ad-coupang" data-cp-widget="${CP.widget}" data-cp-tracking="${CP.tracking}"></div><p class="ad-note">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></aside>
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="${b}privacy.html">개인정보처리방침</a></footer>
