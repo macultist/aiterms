@@ -54,6 +54,11 @@ for (const f of ['index.html', 'privacy.html', 'app.js', 'data/terms.js']) asser
 for (const f of ['index.html', 'rag/index.html']) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
   assert(h.includes('page_location:nq(location.href)') && h.includes('page_referrer:nq(document.referrer)'), 'GA 검색어 ' + f);
   assert(!h.includes('unsafe-url') && h.includes('referrerPolicy="strict-origin-when-cross-origin"'), '쿠팡 referrer ' + f); }
-// 낮음 4건 방어: 글꼴 무결성, 콘텐츠 보안 정책, 광고 sandbox, 저장값 모양 검사
-for (const f of ['index.html', 'rag/index.html', 'privacy.html']) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
-  assert(h.includes('Content-Security-Policy') && h.includes('pretendard.min.css" integrity="sha384-') && h.includes('setAttribute("sandbox"'), '보안 헤더 ' + f); }
+// 보안 설정은 모든 페이지에: 글꼴 무결성, CSP(인라인 스크립트는 해시로만), referrer meta, 광고 sandbox
+for (const f of ['index.html', 'privacy.html', ...pages.map(d => d + '/index.html')]) { const h = fs.readFileSync(__dirname + '/' + f, 'utf8');
+  assert(h.includes('pretendard.min.css" integrity="sha384-') && h.includes('setAttribute("sandbox"') && h.includes('<meta name="referrer" content="strict-origin-when-cross-origin">'), '보안 설정 ' + f);
+  const m = h.match(/Content-Security-Policy" content="([^"]*)"/); assert(m, 'CSP ' + f);
+  const sp = m[1].match(/script-src ([^;]*)/)[1]; assert(!sp.includes('unsafe-inline'), 'script-src unsafe-inline ' + f);
+  for (const x of h.matchAll(/<script>([\s\S]*?)<\/script>/g)) assert(sp.includes("'sha256-" + require('crypto').createHash('sha256').update(x[1]).digest('base64') + "'"), '인라인 스크립트 해시 ' + f); }
+// 가운뎃점(·)은 쓰지 않는다. 예외: 3·1 운동, 8·15 광복처럼 숫자 사이
+for (const f of ['index.html', 'privacy.html', 'app.js', 'build.js', 'data/terms.js']) assert(!/(?<!\d)·|·(?!\d)/.test(fs.readFileSync(__dirname + '/' + f, 'utf8')), '가운뎃점 ' + f);

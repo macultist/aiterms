@@ -32,14 +32,20 @@ for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
 }
 // 고칠 때마다 브라우저가 새 파일을 받도록 주소 끝에 ?v=내용지문 을 붙인다
 const v = require('crypto').createHash('sha1').update(['data/terms.js', 'app.js', 'style.css'].map(read).join('')).digest('hex').slice(0, 8);
-const bust = h => h.replace(/(data\/terms\.js|app\.js|style\.css)(\?v=\w+)?"/g, `$1?v=${v}"`);
+const bust = h => {
+  const hashes = [...h.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => `'sha256-${require('crypto').createHash('sha256').update(m[1]).digest('base64')}'`);
+  return h.replace('<!--CSP-->', `<meta http-equiv="Content-Security-Policy" content="${CSP.replace('{HASHES}', hashes.join(' '))}"><meta name="referrer" content="strict-origin-when-cross-origin">`)
+    .replace(/(data\/terms\.js|app\.js|style\.css)(\?v=\w+)?"/g, `$1?v=${v}"`);
+};
 const fav = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2303c75a'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">`;
 // 쿠팡 파트너스 배너(공개 값, petfee, waste 와 같은 위젯). 광고는 본문 아래 한 곳만
 // 구글 애널리틱스(공개 측정 ID), 모든 페이지 <head> 바로 다음에 한 번. 검색어(?q=)는 주소, 이전 주소, 제목에서 빼고 보낸다
 const GA = 'G-8V2J5BZTHD';
-const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://ads-partners.coupang.com; object-src 'none'; base-uri 'self'; form-action 'self'">`;
+// 콘텐츠 보안 정책: 인라인 스크립트는 페이지마다 sha256 해시로만 허용(bust 가 자리표시자를 채움), 클릭재킹 방어는 meta 로 안 돼서 gtag 스크립트의 화면 숨김 한 줄로 대신
+const CSP = "default-src 'self'; script-src 'self' {HASHES} https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net; frame-src https://ads-partners.coupang.com; object-src 'none'; base-uri 'self'; form-action 'self'";
+const csp = '<!--CSP-->';
 const gtag = csp + `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());function nq(s){try{var u=new URL(s);u.searchParams.delete('q');return u.href}catch(e){return s}}var o={anonymize_ip:true,page_location:nq(location.href),page_referrer:nq(document.referrer)};if(/[?&]q=/.test(location.search))o.page_title='검색 : AI 용어사전';gtag('config','${GA}',o);</script>`;
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}if(top!==self)document.documentElement.style.display='none';gtag('js',new Date());function nq(s){try{var u=new URL(s);u.searchParams.delete('q');return u.href}catch(e){return s}}var o={anonymize_ip:true,page_location:nq(location.href),page_referrer:nq(document.referrer)};if(/[?&]q=/.test(location.search))o.page_title='검색 : AI 용어사전';gtag('config','${GA}',o);</script>`;
 const CP = { tracking: 'AF5048356', widget: '1029096' };
 const tail = b => `<aside class="ads" aria-label="광고"><div class="ad-coupang" data-cp-widget="${CP.widget}" data-cp-tracking="${CP.tracking}"></div><p class="ad-note">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p></aside>
 <footer>AI 용어사전<br>뜻풀이는 학습용 참고 자료이며 서비스, 법령 정보는 바뀔 수 있습니다.<br><a href="${b}privacy.html">개인정보처리방침</a></footer>
