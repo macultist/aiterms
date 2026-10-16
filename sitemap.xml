@@ -376,6 +376,10 @@
 <url><loc>https://macultist.kr/aiterms/bm25/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/rule-based-system/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/expert-system/</loc><lastmod>2026-10-15</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/agent-swarm/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/harness-engineering/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/high-impact-ai/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/agentic-commerce/</loc><lastmod>2026-10-16</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/neural-network/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/transformer/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/reinforcement-learning/</loc><lastmod>2026-10-14</lastmod></url>
@@ -539,4 +543,6 @@
 <url><loc>https://macultist.kr/aiterms/data-lineage/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/stemming/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/ontology/</loc><lastmod>2026-10-15</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/looped-transformer/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/safety-case/</loc><lastmod>2026-10-16</lastmod></url>
 </urlset>
