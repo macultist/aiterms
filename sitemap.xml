@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://macultist.kr/aiterms/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/</loc><lastmod>2026-10-17</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/privacy.html</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/artificial-intelligence/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/chatgpt/</loc><lastmod>2026-10-14</lastmod></url>
@@ -86,6 +86,8 @@
 <url><loc>https://macultist.kr/aiterms/wake-word/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/gpt-ese/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/next-token-prediction/</loc><lastmod>2026-10-15</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/kill-switch/</loc><lastmod>2026-10-17</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/superintelligence/</loc><lastmod>2026-10-17</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/llm/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/api/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/gpu/</loc><lastmod>2026-10-14</lastmod></url>
@@ -380,6 +382,10 @@
 <url><loc>https://macultist.kr/aiterms/harness-engineering/</loc><lastmod>2026-10-16</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/high-impact-ai/</loc><lastmod>2026-10-16</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/agentic-commerce/</loc><lastmod>2026-10-16</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/ai-self-replication/</loc><lastmod>2026-10-17</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/sandbox-escape/</loc><lastmod>2026-10-17</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/frontier-model/</loc><lastmod>2026-10-17</lastmod></url>
+<url><loc>https://macultist.kr/aiterms/ai-incident-reporting/</loc><lastmod>2026-10-17</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/neural-network/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/transformer/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://macultist.kr/aiterms/reinforcement-learning/</loc><lastmod>2026-10-14</lastmod></url>
